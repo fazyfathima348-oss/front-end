@@ -1,0 +1,83 @@
+<!-- property-list.component.html -->
+<div class="list-container">
+  <div class="header-row">
+    <h2>Property Management</h2>
+    <button 
+      class="btn-add" 
+      routerLink="/properties/create">
+      + Add Property
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading$ | async" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading properties...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error$ | async as error" class="error-alert">
+    {{ error }}
+  </div>
+
+  <!-- Properties Table -->
+  <table class="property-table" *ngIf="!(loading$ | async)">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Location</th>
+        <th>Owner</th>
+        <th>Verification Staff</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of properties$ | async">
+        <td>{{ property.title }}</td>
+        <td>{{ property.type }}</td>
+        <td>{{ property.location }}</td>
+        <td>
+          <div class="owner-name">{{ property.owner?.name || 'Loading...' }}</div>
+          <div class="owner-email">{{ property.owner?.email }}</div>
+        </td>
+        <td>
+          <div class="staff-name">{{ property.verification_staff?.name || 'Loading...' }}</div>
+          <div class="staff-role">{{ property.verification_staff?.role }}</div>
+        </td>
+        <td>${{ property.price }}</td>
+        <td>
+          <span 
+            class="status-badge"
+            [class.status-pending]="(property.status || 'pending') === 'pending'"
+            [class.status-verified]="property.status === 'verified'">
+            {{ property.status || 'pending' | titlecase }}
+          </span>
+        </td>
+        <td class="action-buttons">
+          <button 
+            class="btn-edit"
+            [routerLink]="['/properties/edit', property.pid]">
+            Edit
+          </button>
+          <button 
+            class="btn-delete"
+            (click)="deleteProperty(property.pid!)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      
+      <!-- Empty State -->
+      <tr *ngIf="(properties$ | async)?.length === 0">
+        <td colspan="8" class="empty-state">
+          <div class="empty-icon">🏠</div>
+          <div class="empty-title">No properties found</div>
+          <div class="empty-subtitle">Click "Add Property" to create one</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

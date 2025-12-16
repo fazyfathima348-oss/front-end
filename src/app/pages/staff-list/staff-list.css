@@ -1,0 +1,134 @@
+.list-container {
+  background: #ffffff;
+  margin: 40px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-add {
+  background: #564304;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-add:hover {
+  background: #8e6f02;
+}
+
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-table th {
+  background: #f5f5f5;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.staff-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn-delete {
+  background: #d9534f;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #c9302c;
+}
+
+.alert {
+  background: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+  color: #155724;
+  margin-bottom: 10px;
+  border: 1px solid #c3e6cb;
+}
+
+/* Popup full screen overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup box */
+.popup-box {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.popup-box h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.btn-save {
+  background: #1c891c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+
+.btn-cancel {
+  background: #8f8f8f;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.btn-edit {
+  background: #2255aa;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-right: 5px;
+}

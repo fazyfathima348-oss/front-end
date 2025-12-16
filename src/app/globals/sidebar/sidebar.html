@@ -1,0 +1,50 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h3>Elite Estates</h3>
+    <div class="user-info" *ngIf="isLogged$ | async">
+      <div class="user-avatar">
+        <span class="user-icon">👤</span>
+      </div>
+      <div class="user-details">
+        <p class="user-name">{{ userName$ | async }}</p>
+        <p class="user-role">{{ role$ | async | titlecase }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="sidebar-menu">
+    <!-- Guest Menu -->
+    <ng-container *ngIf="!(isLogged$ | async)">
+      <li><a (click)="navigate('/login')">Login</a></li>
+    </ng-container>
+
+    <!-- Admin Menu -->
+    <ng-container *ngIf="(isLogged$ | async) && (role$ | async) === 'admin'">
+      <li><a (click)="navigate('/dashboard')">Dashboard</a></li>
+      <li><a (click)="navigate('/staff-list')">Manage Staff</a></li>
+      <li><a (click)="navigate('/user-list')">Manage Users</a></li>
+      <li><a (click)="navigate('/staff-form')">Bookings</a></li>
+      <li><a (click)="navigate('/properties')">Properties</a></li>
+    </ng-container>
+
+    <!-- Verification Staff -->
+    <ng-container *ngIf="(isLogged$ | async) && (role$ | async) === 'verificationstaff'">
+      <li><a (click)="navigate('/verify-tenants')">Pending Properties</a></li>
+      <li><a (click)="navigate('/tenant-list')">Approved Property List</a></li>
+    </ng-container>
+
+    <!-- Property Staff -->
+    <ng-container *ngIf="(isLogged$ | async) && (role$ | async) === 'propertystaff'">
+      <li><a (click)="navigate('/users')">Manage Users</a></li>
+      <li><a (click)="navigate('/properties')">Manage Properties</a></li>
+      <li><a (click)="navigate('/property-requests')">Requests</a></li>
+    </ng-container>
+  </ul>
+
+  <div class="sidebar-footer" *ngIf="isLogged$ | async">
+    <button class="logout-btn" (click)="logout()">
+      <span class="logout-icon">↪</span>
+      <span class="logout-text">Logout</span>
+    </button>
+  </div>
+</div>

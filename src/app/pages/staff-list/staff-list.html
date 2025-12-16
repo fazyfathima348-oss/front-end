@@ -1,0 +1,79 @@
+<div class="list-container">
+
+  <div class="header-row">
+    <h2>Staff Management</h2>
+    <button class="btn-add" (click)="goToAddStaff()">+ Add Staff</button>
+  </div>
+
+  <div *ngIf="message$ | async as message" class="alert">
+  {{ message }}
+  </div>
+
+
+  <table class="staff-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Password</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let s of (staffList$ | async)">
+        <td>{{ s.sid }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.role }}</td>
+        <td>{{ s.password }}</td>
+       <td>
+          <button class="btn-edit" (click)="openEdit(s)">Edit</button>
+          <button class="btn-delete" (click)="delete(s.sid!)">Delete</button>
+       </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EDIT POPUP -->
+<div class="popup-overlay" *ngIf="showEditPopup">
+  <div class="popup-box">
+
+    <h3>Edit Staff</h3>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="selectedStaff!.name">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="selectedStaff!.email">
+    </div>
+
+    <div class="form-group">
+      <label>Role</label>
+      <select [(ngModel)]="selectedStaff!.role">
+        <option value="verificationStaff">Verification Staff</option>
+        <option value="propertyStaff">Property Staff</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>New Password (optional)</label>
+      <input type="password" [(ngModel)]="selectedStaff!.password">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="btn-save" (click)="saveEdit()">Update</button>
+      <button class="btn-cancel" (click)="closeEdit()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+
+</div>

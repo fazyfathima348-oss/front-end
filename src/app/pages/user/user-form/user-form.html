@@ -1,0 +1,60 @@
+<div class="user-form-container">
+
+  <h2 class="form-title">
+    {{ isEdit ? 'Edit User' : 'Add New User' }}
+  </h2>
+
+  <!-- Success / Error message -->
+  <div *ngIf="message$ | async as message" class="success-message">
+    {{ message }}
+  </div>
+
+  <form (ngSubmit)="saveUser()" class="form-wrapper">
+
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name" required />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required />
+    </div>
+
+    <!-- Contact -->
+    <div class="form-group">
+      <label for="contact">Contact</label>
+      <input type="text" id="contact" name="contact" [(ngModel)]="user.contact" />
+    </div>
+
+    <!-- Address -->
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea id="address" name="address" [(ngModel)]="user.address"></textarea>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" name="role" [(ngModel)]="user.role" required>
+        <option value="owner">Owner</option>
+        <option value="customer">Customer</option>
+      </select>
+    </div>
+
+    <!-- Password (only for add) -->
+    <div class="form-group" *ngIf="!isEdit">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" />
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="submit" class="btn-save">{{ isEdit ? 'Update' : 'Create' }}</button>
+      <button type="button" class="btn-cancel" (click)="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>

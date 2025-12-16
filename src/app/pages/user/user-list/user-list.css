@@ -1,0 +1,166 @@
+/* Container adjustments */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Role filter buttons */
+.role-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.role-tabs button {
+  padding: 8px 16px;
+  border: 1px solid #6b611d;
+  background-color: white;
+  color: #6b611d;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.role-tabs button.active,
+.role-tabs button:hover {
+  background-color: #6b611d;
+  color: white;
+}
+
+/* Add user button */
+.text-end .btn {
+  background-color: #6b611d;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s;
+}
+
+.text-end .btn:hover {
+  background-color: #534b14;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+table tr:nth-child(even) {
+  background-color: #fdfdfd;
+}
+
+table tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Action buttons inside table */
+.btn-warning {
+  background-color: #f0ad4e;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.btn-warning:hover {
+  background-color: #ec971f;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Add User button */
+.btn-add-user {
+  background-color: #6b611d;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-add-user:hover {
+  background-color: #534b14;
+}
+
+/* Role filter tabs (right side) */
+.role-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.role-tabs button {
+  padding: 8px 16px;
+  border: 1px solid #6b611d;
+  background-color: white;
+  color: #6b611d;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.role-tabs button.active,
+.role-tabs button:hover {
+  background-color: #6b611d;
+  color: white;
+}
+
+/* ACTION BUTTONS */
+.btn-edit {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.btn-edit:hover {
+  background-color: #45a049;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}

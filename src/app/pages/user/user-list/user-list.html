@@ -1,0 +1,43 @@
+<div class="container mt-4">
+
+  <h2 class="mb-3">Users</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <button class="btn-add-user" (click)="addUser()">+ Add User</button>
+
+  
+    <div class="role-tabs">
+      <button [class.active]="selectedRole === 'owner'" (click)="changeRole('owner')">Owners</button>
+      <button [class.active]="selectedRole === 'customer'" (click)="changeRole('customer')">Customers</button>
+    </div>
+  </div>
+
+ 
+  <table class="table table-bordered table-striped mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th style="width:150px;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+
+        <td class="text-center">
+          <button class="btn-edit" (click)="editUser(user.id!)">Edit</button>
+          <button class="btn-delete" (click)="deleteUser(user.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,223 @@
+/* property-list.component.scss */
+.list-container {
+  background: #ffffff;
+  margin: 40px auto;
+  padding: 25px;
+  width: 60%;
+  max-width: 1400px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-row h2 {
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.btn-add {
+  background: #564304;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-add:hover {
+  background: #8e6f02;
+}
+
+/* Loading State */
+.loading-container {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #564304;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-alert {
+  background: #ffd4d4;
+  padding: 10px;
+  border-radius: 5px;
+  color: #8a0000;
+  margin-bottom: 10px;
+  border: 1px solid #ffb3b3;
+}
+
+/* Table Styles */
+.property-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.property-table th {
+  background: #f5f5f5;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+  text-align: left;
+  color: #333;
+}
+
+.property-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.property-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.status-verified {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Action Buttons */
+.btn-edit {
+  background: #2255aa;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-edit:hover {
+  background: #1a4488;
+}
+
+.btn-delete {
+  background: #d9534f;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-delete:hover {
+  background: #c9302c;
+}
+
+/* Owner and Staff Info */
+.owner-name, .staff-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.owner-email, .staff-role {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.empty-subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .list-container {
+    width: 95%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .btn-add {
+    align-self: flex-start;
+  }
+
+  .property-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn-edit, .btn-delete {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+}

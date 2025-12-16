@@ -1,0 +1,33 @@
+<div class="form-container">
+  <h2>Add Staff</h2>
+
+  <p *ngIf="successMessage" class="success-box">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="error-box">{{ errorMessage }}</p>
+
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="name" />
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" />
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" />
+  </div>
+
+  <div class="form-group">
+    <label>Role</label>
+    <select [(ngModel)]="role">
+      <option value="">-- Select Role --</option>
+      <option value="verificationStaff">Verification Staff</option>
+      <option value="propertyStaff">Property Staff</option>
+    </select>
+  </div>
+
+  <button class="btn-save" (click)="save()">Save</button>
+  <button class="btn-cancel" (click)="cancel()">Cancel</button>
+</div>

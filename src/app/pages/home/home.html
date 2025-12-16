@@ -1,0 +1,183 @@
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <span class="logo-brown">Elite</span><span class="logo-gray">Estates</span>
+  </div>
+
+  <div class="nav-right">
+    <button *ngIf="!(isLogged$ | async)" (click)="goToLogin()" class="btn-login-nav">
+      Login
+    </button>
+   
+  </div>
+</nav>
+
+<!-- Spacer to prevent content overlapping fixed navbar -->
+<div class="navbar-spacer"></div>
+
+<!-- Registration Form Modal -->
+<div class="modal-overlay" *ngIf="showRegistrationForm">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Request to Buy: {{selectedProperty?.title}}</h2>
+      <button class="modal-close" (click)="closeRegistrationForm()">&times;</button>
+    </div>
+    
+    <form (ngSubmit)="submitRegistration()" class="registration-form">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          placeholder="Enter your full name"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          placeholder="Enter your email"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          placeholder="Enter your phone number"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="budget">Maximum Budget (LKR )</label>
+        <input 
+          type="number" 
+          id="budget" 
+          placeholder="Enter your maximum budget"
+          min="0"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Additional Message</label>
+        <textarea 
+          id="message" 
+          placeholder="Any additional information or questions..."
+          rows="4"
+        ></textarea>
+      </div>
+      
+      <div class="form-group checkbox-group">
+        <input 
+          type="checkbox" 
+          id="terms"
+          required
+        >
+        <label for="terms">
+          I agree to be contacted by EliteEstates regarding this property inquiry
+        </label>
+      </div>
+      
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn-cancel" 
+          (click)="closeRegistrationForm()"
+        >
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="btn-submit" 
+          [disabled]="isSubmitting"
+        >
+          {{ isSubmitting ? 'Submitting...' : 'Submit Request' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="home-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading properties...</p>
+  </div>
+ 
+  
+  <!-- Properties Grid -->
+  <div *ngIf="!loading && !error" class="properties-grid">
+    <div *ngFor="let property of properties" class="property-card">
+      
+      <!-- Property Image -->
+      <div class="property-image-container">
+        <img 
+          [src]="property.image ? (property.image.startsWith('http') ? property.image : 'http://127.0.0.1:8000/storage/' + property.image) : 'https://via.placeholder.com/400x300?text=No+Image'"
+          [alt]="property.title"
+          class="property-image"
+          (error)="property.image = undefined"
+        >
+        
+        <!-- Status Badge -->
+        <div class="property-status" [ngClass]="property.status || 'verified'">
+          {{ (property.status || 'verified') | titlecase }}
+        </div>
+      </div>
+
+      <!-- Property Details -->
+      <div class="property-details">
+        <div class="property-header">
+          <h3 class="property-title">{{ property.title }}</h3>
+          <span class="property-type">{{ property.type }}</span>
+        </div>
+        
+        <div class="property-location">
+          <span class="location-icon">📍</span>
+          {{ property.location }}
+        </div>
+        
+        <p class="property-description" *ngIf="property.description">
+          {{ property.description }}
+        </p>
+        
+        <div class="property-specs">
+          <div class="property-price">
+            <!-- Fixed: Use safe navigation only if price can be null/undefined -->
+            <span class="price-value">LKR {{ (property.price || 0).toLocaleString() }}</span>
+            <span class="price-label">Price</span>
+          </div>
+          
+          <div class="property-size" *ngIf="property.size">
+            <span class="size-value">{{ property.size }}</span>
+            <span class="size-label">Size</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request to Buy Button -->
+      <div class="property-actions">
+        <button 
+          class="btn-request-buy" 
+          (click)="requestToBuy(property)"
+          [disabled]="property.status === 'pending'"
+          [ngClass]="{'disabled': property.status === 'pending'}"
+        >
+          {{ property.status === 'pending' ? 'Request Pending' : 'Request To Buy' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Properties Message -->
+  <div *ngIf="!loading && !error && properties.length === 0" class="no-properties">
+    <p>No properties available at the moment.</p>
+  </div>
+</div>

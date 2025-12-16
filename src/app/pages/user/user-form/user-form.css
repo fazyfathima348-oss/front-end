@@ -1,0 +1,143 @@
+/* Main container */
+.user-form-container {
+  width: 100%;
+  max-width: 400px; /* reduced from 500px */
+  margin: 30px auto;
+  padding: 15px 15px 30px; /* smaller padding */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  min-height: 450px; /* slightly smaller height */
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Title */
+.form-title {
+  font-size: 22px; /* smaller font */
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* Success message */
+.success-message {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 8px 12px; /* smaller padding */
+  border-radius: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 14px;
+  animation: fadeInOut 4s ease-in-out;
+}
+
+/* Fade animation for messages */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Form wrapper */
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* reduced gap */
+}
+
+/* Form groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 6px; /* smaller spacing */
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 8px 10px; /* smaller padding */
+  font-size: 14px; /* smaller font */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #6c63ff;
+}
+
+/* Textarea styling */
+textarea {
+  resize: vertical;
+  min-height: 70px; /* smaller height */
+}
+
+/* Buttons */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* smaller gap */
+  margin-top: 15px; /* smaller margin */
+}
+
+.btn-save {
+  background-color: #6c63ff;
+  color: white;
+  padding: 8px 16px; /* smaller */
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-save:hover {
+  background-color: #5a52d4;
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: #333;
+  padding: 8px 16px; /* smaller */
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .user-form-container {
+    padding: 12px 12px 25px;
+    max-width: 95%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Optional: sticky bottom buttons */
+@media (max-height: 600px) {
+  .user-form-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

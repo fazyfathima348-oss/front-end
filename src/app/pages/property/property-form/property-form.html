@@ -1,0 +1,133 @@
+<!-- property-form.component.html -->
+<div class="form-container">
+  <h2>Add New Property</h2>
+
+  <!-- Success Message -->
+  <p *ngIf="successMessage" class="success-box">{{ successMessage }}</p>
+  
+  <!-- Error Message -->
+  <p *ngIf="errorMessage" class="error-box">{{ errorMessage }}</p>
+
+  <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+    <!-- Owner Dropdown -->
+    <div class="form-group">
+      <label class="required">Owner</label>
+      <select 
+        formControlName="owner_id"
+        [class.ng-invalid]="propertyForm.get('owner_id')?.invalid && propertyForm.get('owner_id')?.touched">
+        <option value="">Select Owner</option>
+        <option *ngFor="let owner of owners$ | async" [value]="owner.id">
+          {{ owner.name }} ({{ owner.email }})
+        </option>
+      </select>
+      <div *ngIf="propertyForm.get('owner_id')?.invalid && propertyForm.get('owner_id')?.touched" 
+           class="validation-error">
+        Owner is required
+      </div>
+    </div>
+
+    <!-- Verification Staff Dropdown -->
+    <div class="form-group">
+      <label class="required">Verification Staff</label>
+      <select 
+        formControlName="verification_staff_id"
+        [class.ng-invalid]="propertyForm.get('verification_staff_id')?.invalid && propertyForm.get('verification_staff_id')?.touched">
+        <option value="">Select Verification Staff</option>
+        <option *ngFor="let staff of verificationStaff$ | async" [value]="staff.sid">
+          {{ staff.name }} - {{ staff.role }}
+        </option>
+      </select>
+      <div *ngIf="propertyForm.get('verification_staff_id')?.invalid && propertyForm.get('verification_staff_id')?.touched" 
+           class="validation-error">
+        Verification Staff is required
+      </div>
+    </div>
+
+    <!-- Property Details Grid -->
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="required">Title</label>
+        <input 
+          type="text" 
+          formControlName="title"
+          placeholder="Property Title"
+          [class.ng-invalid]="propertyForm.get('title')?.invalid && propertyForm.get('title')?.touched">
+      </div>
+
+      <div class="form-group">
+        <label class="required">Type</label>
+        <select formControlName="type">
+          <option value="">Select Type</option>
+          <option *ngFor="let type of propertyTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="required">Location</label>
+        <input 
+          type="text" 
+          formControlName="location"
+          placeholder="Property Location"
+          [class.ng-invalid]="propertyForm.get('location')?.invalid && propertyForm.get('location')?.touched">
+      </div>
+
+      <div class="form-group">
+        <label class="required">Price ($)</label>
+        <input 
+          type="number" 
+          formControlName="price"
+          placeholder="Property Price"
+          [class.ng-invalid]="propertyForm.get('price')?.invalid && propertyForm.get('price')?.touched">
+      </div>
+
+      <div class="form-group">
+        <label>Size</label>
+        <input 
+          type="text" 
+          formControlName="size"
+          placeholder="e.g., 2000 sqft">
+      </div>
+
+      <div class="form-group">
+        <label>Image</label>
+        <label class="file-upload-label">
+          <span>{{ selectedImage ? 'Change Image' : 'Choose Image' }}</span>
+          <input 
+            type="file" 
+            accept="image/*"
+            (change)="onImageSelected($event)">
+        </label>
+        
+        <div *ngIf="imagePreview" class="image-preview-container">
+          <img [src]="imagePreview" alt="Preview" class="image-preview">
+        </div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea 
+        formControlName="description"
+        rows="4"
+        placeholder="Property Description"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button 
+        type="button" 
+        class="btn-cancel"
+        routerLink="/properties">
+        Cancel
+      </button>
+     <button 
+  type="submit" 
+  class="btn-save"
+  [disabled]="propertyForm.invalid || (loading$ | async)">
+  {{ isEditMode ? 'Update Property' : 'Create Property' }}
+</button>
+
+    </div>
+  </form>
+</div>

@@ -1,0 +1,57 @@
+.footer {
+  background-color: #282804e9;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 0;
+  width: 100%;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* stays above content */
+}
+
+/* Optional: Hover effect for links if you add any */
+.footer a {
+  color: #fbbf24;              /* yellow link color */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+/* Ensure body doesn't scroll behind sidebar */
+body {
+  overflow-x: hidden;
+  padding-left: 220px; /* Push body content right */
+}
+
+/* Or if using a wrapper */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Make main content area scrollable */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* If you have a fixed footer in main content */
+.main-footer {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  z-index: 100;
+  margin-left: 220px; /* Push footer right */
+}
